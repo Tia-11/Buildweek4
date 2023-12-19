@@ -15,9 +15,16 @@ import java.util.Scanner;
 
 public class Application {
 
+
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Buildweek-4");
 
     public static void main(String[] args) {
+
+        String nome="";
+        String cognome;
+        LocalDate dataEmissione;
+        LocalDate dataScadenza;
+
         System.out.println("Hello World!");
         EntityManager em = emf.createEntityManager();
         Scanner scanner = new Scanner(System.in);
@@ -25,8 +32,23 @@ public class Application {
         UtenteDAO us = new UtenteDAO(em);
         TesseraDAO ts = new TesseraDAO(em);
 
-        Utente utente = new Utente("Maurizio","Crispino");
-        Tessera tessera = new Tessera(LocalDate.parse("2012-06-22"), LocalDate.parse("2025-06-22"));
+        System.out.println("Inizia la tua registrazione");
+        System.out.println(" ");
+
+        System.out.println("Inserisci il tuo nome");
+        nome=scanner.nextLine();
+
+        System.out.println("Inserisci il tuo cognome");
+        cognome=scanner.nextLine();
+
+        System.out.println("Inserisci la data di emissione della tua tessera secondo il formato (YYYY-MM-DD)");
+        dataEmissione = LocalDate.parse(scanner.nextLine());
+
+        System.out.println("Inserisci la data di scadenza della tua tessera secondo il formato (YYYY-MM-DD)");
+        dataScadenza = LocalDate.parse(scanner.nextLine());
+
+        Utente utente = new Utente(nome,cognome);
+        Tessera tessera = new Tessera(dataEmissione, dataScadenza);
         utente.setTessera(tessera);
 
         ts.save(tessera);
