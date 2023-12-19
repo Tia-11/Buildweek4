@@ -21,11 +21,6 @@ public class Tessera {
 
         }
 
-        public Tessera(LocalDate dataEmissione, LocalDate dataScadenza) {
-                this.dataEmissione = dataEmissione;
-                this.dataScadenza = dataScadenza;
-        }
-
         public Tessera(LocalDate dataEmissione) {
                 this.dataEmissione = dataEmissione;
                 this.dataScadenza = dataEmissione.plusYears(1);

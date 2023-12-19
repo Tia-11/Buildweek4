@@ -7,7 +7,6 @@ import entities.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Application {
@@ -17,10 +16,8 @@ public class Application {
 
     public static void main(String[] args) {
 
-        String nome="";
+        String nome=" ";
         String cognome;
-        LocalDate dataEmissione;
-        LocalDate dataScadenza;
 
         System.out.println("Hello World!");
         EntityManager em = emf.createEntityManager();
@@ -45,8 +42,8 @@ public class Application {
         Utente utente = new Utente(nome,cognome);
         utente.setTessera(tessera);
 
-        //ts.save(tessera);
-        //us.save(utente);
+        ts.save(tessera);
+        us.save(utente);
 
         System.out.println(utente);
         System.out.println(utente.getTessera());
