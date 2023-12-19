@@ -23,7 +23,7 @@ public class UtenteDAO {
             em.persist(utente);
             transaction.commit();
 
-            System.out.println("Persona " + utente.getId() +" "+ utente.getNome() +" "+utente.getCognome() + " aggiunto correttamente!");
+            System.out.println("Utente " + utente.getId() +" "+ utente.getNome() +" "+utente.getCognome() + " aggiunto correttamente!");
         }
 
         public Utente findById(long id) {
