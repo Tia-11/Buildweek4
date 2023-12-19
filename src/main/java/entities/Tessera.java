@@ -2,6 +2,8 @@ package entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Tessera {
@@ -12,14 +14,12 @@ public class Tessera {
         private LocalDate dataEmissione;
         private LocalDate dataScadenza;
 
-        //bidirezionalità
+
         @OneToOne(mappedBy = "tessera")
         private Utente utente;
 
         @OneToMany(mappedBy = "tessera")
-        private Abbonamento abbonamento;
-
-
+        private List<Abbonamento> abbonamento;
 
         public Tessera (){
 
@@ -63,11 +63,11 @@ public class Tessera {
                 this.utente = utente;
         }
 
-        public Abbonamento getAbbonamento() {
+        public List<Abbonamento> getAbbonamento() {
                 return abbonamento;
         }
 
-        public void setAbbonamento(Abbonamento abbonamento) {
+        public void setAbbonamento(List<Abbonamento> abbonamento) {
                 this.abbonamento = abbonamento;
         }
 
