@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,8 +36,16 @@ public class Rivenditore {
     public Rivenditore() {
     }
 
-    public Rivenditore(UUID id, List<Acquisto> acquisti) {
+    public Rivenditore(UUID id) {
         this.id = id;
-        this.acquisti = acquisti;
+        this.acquisti = new ArrayList<>();
+    }
+
+    public void aggiungiAcquisto(Acquisto acquisto) {
+        if (acquisti == null) {
+            acquisti = new ArrayList<>();
+        }
+        acquisti.add(acquisto);
+        acquisto.setRivenditore(this);
     }
 }

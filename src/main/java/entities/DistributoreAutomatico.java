@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,9 +44,18 @@ public class DistributoreAutomatico {
     public DistributoreAutomatico() {
     }
 
-    public DistributoreAutomatico(UUID id, List<Acquisto> acquisti, FunzionamentoDistributore stato) {
+    public DistributoreAutomatico(UUID id, FunzionamentoDistributore stato) {
         this.id = id;
-        this.acquisti = acquisti;
+        this.acquisti = new ArrayList<>();
         this.stato = stato;
     }
+
+    public void aggiungiAcquisto(Acquisto acquisto) {
+        if (acquisti == null) {
+            acquisti = new ArrayList<>();
+        }
+        acquisti.add(acquisto);
+        acquisto.setDistributore(this);
+    }
+
 }

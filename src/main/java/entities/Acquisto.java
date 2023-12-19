@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.UUID;
@@ -14,9 +15,11 @@ abstract class Acquisto {
     private Date dataEmissione;
 
     @ManyToOne
+    @JoinColumn(name = "rivenditore_id")
     private Rivenditore rivenditore;
 
     @ManyToOne
+    @JoinColumn(name = "distributore_id")
     private DistributoreAutomatico distributore;
 
 
