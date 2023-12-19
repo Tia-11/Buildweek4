@@ -19,11 +19,11 @@ public class TratteDAO {
         em.getTransaction().commit();
         System.out.println("tratta " + tratta.getZonaPartenza() + "-" + tratta.getCapolinea() + " salvata nel database");
     }
-    public Tratta findById(long id) {
+    public Tratta FindById(long id) {
         return em.find(Tratta.class, id);
     }
-    public void findByIdAndDelete(long id) {
-        Tratta tratta = findById(id);
+    public void FindByIdAndDelete(long id) {
+        Tratta tratta = FindById(id);
         em.getTransaction().begin();
         em.remove(tratta);
         em.getTransaction().commit();

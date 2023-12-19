@@ -1,11 +1,9 @@
 package org.example;
 
+import DAO.InManutenzioneDAO;
 import DAO.MezziDiTrasportoDAO;
 import DAO.TratteDAO;
-import entities.MezzoDiTrasporto;
-import entities.StatoDelMezzo;
-import entities.TipoMezzo;
-import entities.Tratta;
+import entities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,25 +25,30 @@ public class Application {
 
         MezziDiTrasportoDAO mDao = new MezziDiTrasportoDAO(em);
         TratteDAO tDao = new TratteDAO(em);
+        InManutenzioneDAO iDao = new InManutenzioneDAO(em);
 
-        MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.TRAM, 33, StatoDelMezzo.IN_SERVIZIO, LocalDate.parse("2017-03-12"));
+        MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 29, StatoDelMezzo.IN_MANUTENZIONE, LocalDate.parse("2020-11-02"));
         //mDao.Save(mezzo1);
-        mDao.findByIdAndDelete(7);
+        //mDao.FindByIdAndDelete(7);
 
-        Tratta tratta1 = new Tratta("Galzignano Terme", "Este", 10.8);
+        //Tratta tratta1 = new Tratta("Galzignano Terme", "Este", 10.8);
         //tDao.Save(tratta1);
         //tratta1.setMezziDiTrasporto();
+        //InManutenzione manutenzione1 = new InManutenzione(LocalDate.parse("2023-04-09"), LocalDate.parse("2023-04-13"), mDao.FindById(6));
+        //System.out.println(manutenzione1);
+        //iDao.Save(manutenzione1);
+        System.out.println(mDao.FindById(6));
 
 
-
-        Tratta trattaProva = tDao.findById(4);
-        Tratta trattaProva2 = tDao.findById(3);
-        Tratta trattaProva3 = tDao.findById(5);
-        MezzoDiTrasporto mezzoProva = mDao.findById(6);
-
-        mezzoProva.setTratta(new ArrayList<>(Arrays.asList(trattaProva3, trattaProva2)));
+        Tratta trattaProva = tDao.FindById(4);
+        Tratta trattaProva2 = tDao.FindById(3);
+        Tratta trattaProva3 = tDao.FindById(5);
+        MezzoDiTrasporto mezzoProva = mDao.FindById(1);
+        //mezzoProva.setInizioServizio(LocalDate.parse("2016-02-14"));
+        //mDao.Save(mezzoProva);
+        //mezzoProva.setTratta(new ArrayList<>(Arrays.asList(trattaProva3, trattaProva2)));
         //mDao.Save(mezzoProva);  // quindi questa operazione è una specie di PUT?
-        System.out.println(trattaProva2);
+        //System.out.println(trattaProva2);
 
 
 

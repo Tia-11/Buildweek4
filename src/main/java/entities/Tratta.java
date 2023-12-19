@@ -78,7 +78,6 @@ public class Tratta {
                 ", zonaPartenza='" + zonaPartenza + '\'' +
                 ", capolinea='" + capolinea + '\'' +
                 ", tempoMedioPercorrenza=" + tempoMedioPercorrenza +
-                ", mezziDiTrasporto=" + mezziDiTrasporto +
                 '}';
     }
 }

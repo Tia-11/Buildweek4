@@ -19,11 +19,11 @@ public class MezziDiTrasportoDAO {
         em.getTransaction().commit();
         System.out.println("mezzo con id " + mezzoDiTrasporto.getId() + " salvato correttamente nel database");
     }
-    public MezzoDiTrasporto findById(long id) {
+    public MezzoDiTrasporto FindById(long id) {
         return em.find(MezzoDiTrasporto.class, id);
     }
-    public void findByIdAndDelete(long id) {
-        MezzoDiTrasporto mezzo = findById(id);
+    public void FindByIdAndDelete(long id) {
+        MezzoDiTrasporto mezzo = FindById(id);
         if (mezzo != null) {
             em.getTransaction().begin();
             em.remove(mezzo);

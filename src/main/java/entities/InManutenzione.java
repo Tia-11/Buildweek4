@@ -17,9 +17,10 @@ public class InManutenzione {
 
     public InManutenzione() {}
 
-    public InManutenzione(LocalDate inizioManutenzione, LocalDate fineManutenzione) {
+    public InManutenzione(LocalDate inizioManutenzione, LocalDate fineManutenzione, MezzoDiTrasporto mezzoDiTrasporto) {
         this.inizioManutenzione = inizioManutenzione;
         this.fineManutenzione = fineManutenzione;
+        this.mezzoDiTrasporto = mezzoDiTrasporto;
     }
 
     // GETTER E SETTER
@@ -43,5 +44,22 @@ public class InManutenzione {
 
     public void setFineManutenzione(LocalDate fineManutenzione) {
         this.fineManutenzione = fineManutenzione;
+    }
+
+    public MezzoDiTrasporto getMezzoDiTrasporto() {
+        return mezzoDiTrasporto;
+    }
+
+    public void setMezzoDiTrasporto(MezzoDiTrasporto mezzoDiTrasporto) {
+        this.mezzoDiTrasporto = mezzoDiTrasporto;
+    }
+
+    @Override
+    public String toString() {
+        return "InManutenzione{" +
+                "id=" + id +
+                ", inizioManutenzione=" + inizioManutenzione +
+                ", fineManutenzione=" + fineManutenzione +
+                '}';
     }
 }

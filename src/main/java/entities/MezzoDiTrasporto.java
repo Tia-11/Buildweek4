@@ -105,7 +105,8 @@ public class MezzoDiTrasporto {
                 ", capienza=" + capienza +
                 ", statoDelMezzo=" + statoDelMezzo +
                 ", inizioServizio=" + inizioServizio +
-                ", inManutenzione=" + inManutenzione +
+                ", Manutenzioni=" + inManutenzione +
+                ", tratte=" + tratta +
                 '}';
     }
 }
