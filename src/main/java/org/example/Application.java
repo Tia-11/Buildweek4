@@ -38,12 +38,10 @@ public class Application {
 
 
 
-        //System.out.println(tDao.findById(4));
         Tratta trattaProva = tDao.findById(4);
         Tratta trattaProva2 = tDao.findById(3);
         Tratta trattaProva3 = tDao.findById(5);
         MezzoDiTrasporto mezzoProva = mDao.findById(6);
-        //System.out.println(mezzoProva);
 
         mezzoProva.setTratta(new ArrayList<>(Arrays.asList(trattaProva3, trattaProva2)));
         //mDao.Save(mezzoProva);  // quindi questa operazione è una specie di PUT?
