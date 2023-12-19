@@ -17,11 +17,18 @@ public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Buildweek-4");
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         EntityManager em = emf.createEntityManager();
+
+
+
+
+
+
+
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Inseriamo il mezzo di trasporto!");
-        nuovoMezzo(scanner);
+        //System.out.println("Inseriamo il mezzo di trasporto!");
+        //nuovoMezzo(scanner);
 
 
 
@@ -53,6 +60,7 @@ public class Application {
         try {
             capienza = Integer.parseInt(scanner.nextLine());
             System.out.println("capienza mezzo : " + capienza);
+
         } catch (NumberFormatException exception) {
             System.err.println(exception + "Errore, non hai inserito un numero");
             nuovoMezzo(scanner);

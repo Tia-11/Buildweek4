@@ -1,9 +1,7 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Tratta {
@@ -13,8 +11,11 @@ public class Tratta {
     private String zonaPartenza;
     private String capolinea;
     private double tempoMedioPercorrenza;
-    //@OneToMany // o ManyToOne? o ManyToMany?????????
-    //private MezzoDiTrasporto mezzoDiTrasporto;
+    @ManyToMany
+    @JoinTable(name = "mezzoDiTrasporto_tratta",
+               joinColumns = @JoinColumn(name = "tratta_id"),
+               inverseJoinColumns = @JoinColumn(name = "mezzoDiTrasporto_id"))
+    private List<MezzoDiTrasporto> mezzoDiTrasporto;
 
 
 // COSTRUTTORI

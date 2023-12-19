@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Mezzi_Di_Trasporto")
@@ -14,8 +15,14 @@ public class MezzoDiTrasporto {
     private int capienza;
     @Enumerated(EnumType.STRING)
     private StatoDelMezzo statoDelMezzo;
-    private LocalDate periodoInizio;    // ancora non associata a dei costruttori
-    private LocalDate periodoFine;      // ancora non associata a dei costruttori
+    private LocalDate inizioServizio;
+    @OneToMany(mappedBy = "mezzoDiTrasporto")
+    private List<InManutenzione> inManutenzione;
+    @ManyToMany
+    @JoinTable(name = "mezzoDiTrasporto_tratta",
+              joinColumns = @JoinColumn(name = "mezzoDiTrasporto_id"),
+              inverseJoinColumns = @JoinColumn(name = "tratta_id"))
+    private List<Tratta> tratta;
 
     //COSTRUTTORI
     public MezzoDiTrasporto() {}
@@ -57,22 +64,6 @@ public class MezzoDiTrasporto {
 
     public void setStatoDelMezzo(StatoDelMezzo statoDelMezzo) {
         this.statoDelMezzo = statoDelMezzo;
-    }
-
-    public LocalDate getPeriodoInizio() {
-        return periodoInizio;
-    }
-
-    public void setPeriodoInizio(LocalDate periodoInizio) {
-        this.periodoInizio = periodoInizio;
-    }
-
-    public LocalDate getPeriodoFine() {
-        return periodoFine;
-    }
-
-    public void setPeriodoFine(LocalDate periodoFine) {
-        this.periodoFine = periodoFine;
     }
 
     @Override
