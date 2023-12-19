@@ -14,23 +14,22 @@ public class MezzoDiTrasporto {
     private int capienza;
     @Enumerated(EnumType.STRING)
     private StatoDelMezzo statoDelMezzo;
-    private LocalDate peridoInizio;
-    private LocalDate periodoFine;
+    private LocalDate periodoInizio;    // ancora non associata a dei costruttori
+    private LocalDate periodoFine;      // ancora non associata a dei costruttori
 
     //COSTRUTTORI
-
     public MezzoDiTrasporto() {}
-
-    public MezzoDiTrasporto(TipoMezzo tipoMezzo, int capienza, StatoDelMezzo statoDelMezzo, LocalDate peridoInizio, LocalDate periodoFine) {
+    public MezzoDiTrasporto(TipoMezzo tipoMezzo, int capienza, StatoDelMezzo statoDelMezzo) {
         this.tipoMezzo = tipoMezzo;
         this.capienza = capienza;
         this.statoDelMezzo = statoDelMezzo;
-        this.peridoInizio = peridoInizio;
-        this.periodoFine = periodoFine;
+    }
+    public MezzoDiTrasporto(TipoMezzo tipoMezzo, int capienza) {
+        this.tipoMezzo = tipoMezzo;
+        this.capienza = capienza;
     }
 
     //GETTER E SETTER
-
 
     public long getId() {
         return id;
@@ -60,12 +59,12 @@ public class MezzoDiTrasporto {
         this.statoDelMezzo = statoDelMezzo;
     }
 
-    public LocalDate getPeridoInizio() {
-        return peridoInizio;
+    public LocalDate getPeriodoInizio() {
+        return periodoInizio;
     }
 
-    public void setPeridoInizio(LocalDate peridoInizio) {
-        this.peridoInizio = peridoInizio;
+    public void setPeriodoInizio(LocalDate periodoInizio) {
+        this.periodoInizio = periodoInizio;
     }
 
     public LocalDate getPeriodoFine() {
@@ -83,7 +82,7 @@ public class MezzoDiTrasporto {
                 ", tipoMezzo=" + tipoMezzo +
                 ", capienza=" + capienza +
                 ", statoDelMezzo=" + statoDelMezzo +
-                ", peridoInizio=" + peridoInizio +
+                ", periodoInizio=" + periodoInizio +
                 ", periodoFine=" + periodoFine +
                 '}';
     }
