@@ -12,6 +12,10 @@ public class Abbonamento extends Acquisto {
 
     private Date dataScadenza;
 
+    @ManyToOne
+    @JoinColumn(name = "tessera_id", nullable = false)
+    private Tessera tessera;
+
 
     public DurataAbbonamento getDurata() {
         return durata;
@@ -27,6 +31,14 @@ public class Abbonamento extends Acquisto {
 
     public void setDataScadenza(Date dataScadenza) {
         this.dataScadenza = dataScadenza;
+    }
+
+    public Tessera getTessera() {
+        return tessera;
+    }
+
+    public void setTessera(Tessera tessera) {
+        this.tessera = tessera;
     }
 
     public Abbonamento() {

@@ -12,8 +12,12 @@ public class Tessera {
         private LocalDate dataEmissione;
         private LocalDate dataScadenza;
 
+        //bidirezionalità
         @OneToOne(mappedBy = "tessera")
         private Utente utente;
+
+        @OneToMany(mappedBy = "tessera")
+        private Abbonamento abbonamento;
 
 
 
@@ -57,6 +61,14 @@ public class Tessera {
 
         public void setUtente(Utente utente) {
                 this.utente = utente;
+        }
+
+        public Abbonamento getAbbonamento() {
+                return abbonamento;
+        }
+
+        public void setAbbonamento(Abbonamento abbonamento) {
+                this.abbonamento = abbonamento;
         }
 
         @Override
