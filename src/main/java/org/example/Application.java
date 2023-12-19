@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 import java.awt.desktop.SystemEventListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -27,18 +28,29 @@ public class Application {
         MezziDiTrasportoDAO mDao = new MezziDiTrasportoDAO(em);
         TratteDAO tDao = new TratteDAO(em);
 
-        MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 40, StatoDelMezzo.IN_MANUTENZIONE, LocalDate.parse("2023-06-24"));
+        MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.TRAM, 33, StatoDelMezzo.IN_SERVIZIO, LocalDate.parse("2017-03-12"));
         //mDao.Save(mezzo1);
+        mDao.findByIdAndDelete(7);
 
-        Tratta tratta1 = new Tratta("Portogruaro", "Bibione", 25.5);
+        Tratta tratta1 = new Tratta("Galzignano Terme", "Este", 10.8);
         //tDao.Save(tratta1);
         //tratta1.setMezziDiTrasporto();
 
 
 
-        System.out.println(tDao.findById(4));
+        //System.out.println(tDao.findById(4));
         Tratta trattaProva = tDao.findById(4);
-        //mDao.findById(2).setTratta(List<Tratta> trattaProva);
+        Tratta trattaProva2 = tDao.findById(3);
+        Tratta trattaProva3 = tDao.findById(5);
+        MezzoDiTrasporto mezzoProva = mDao.findById(6);
+        //System.out.println(mezzoProva);
+
+        mezzoProva.setTratta(new ArrayList<>(Arrays.asList(trattaProva3, trattaProva2)));
+        //mDao.Save(mezzoProva);  // quindi questa operazione è una specie di PUT?
+        System.out.println(trattaProva2);
+
+
+
 
 
 

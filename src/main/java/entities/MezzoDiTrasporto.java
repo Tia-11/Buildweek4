@@ -18,12 +18,12 @@ public class MezzoDiTrasporto {
     private StatoDelMezzo statoDelMezzo;
     private LocalDate inizioServizio;
     @OneToMany(mappedBy = "mezzoDiTrasporto")
-    private List<InManutenzione> inManutenzione = new ArrayList<>();
+    private List<InManutenzione> inManutenzione;
     @ManyToMany
     @JoinTable(name = "mezzoDiTrasporto_tratta",
               joinColumns = @JoinColumn(name = "mezzoDiTrasporto_id"),
               inverseJoinColumns = @JoinColumn(name = "tratta_id"))
-    private List<Tratta> tratta = new ArrayList<>();
+    private List<Tratta> tratta;
 
     //COSTRUTTORI
     public MezzoDiTrasporto() {}
@@ -104,6 +104,8 @@ public class MezzoDiTrasporto {
                 ", tipoMezzo=" + tipoMezzo +
                 ", capienza=" + capienza +
                 ", statoDelMezzo=" + statoDelMezzo +
+                ", inizioServizio=" + inizioServizio +
+                ", inManutenzione=" + inManutenzione +
                 '}';
     }
 }

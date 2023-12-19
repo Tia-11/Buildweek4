@@ -5,7 +5,7 @@ import entities.Tratta;
 import javax.persistence.EntityManager;
 
 public class TratteDAO {
-    private EntityManager em;
+    private final EntityManager em;
 
     // COSTRUTTORI
     public TratteDAO(EntityManager em) {

@@ -5,7 +5,7 @@ import entities.MezzoDiTrasporto;
 import javax.persistence.EntityManager;
 
 public class MezziDiTrasportoDAO {
-    private EntityManager em;
+    private final EntityManager em;
 
     // COSTRUTTORI
     public MezziDiTrasportoDAO(EntityManager em) {
@@ -24,12 +24,13 @@ public class MezziDiTrasportoDAO {
     }
     public void findByIdAndDelete(long id) {
         MezzoDiTrasporto mezzo = findById(id);
-        em.getTransaction().begin();
-        em.remove(mezzo);
-        em.getTransaction().commit();
-        System.out.println("mezzo con id " + mezzo.getId() + " eliminato correttamente dal database");
+        if (mezzo != null) {
+            em.getTransaction().begin();
+            em.remove(mezzo);
+            em.getTransaction().commit();
+            System.out.println("mezzo con id " + mezzo.getId() + " eliminato correttamente dal database");
+        } else {
+            System.err.println("l'id fornito " + "(" + id + ")" + " non corrisponde a nessun mezzo");
+        }
     }
-
-
-
 }
