@@ -9,7 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.awt.desktop.SystemEventListener;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -21,31 +20,63 @@ public class Application {
         System.out.println("Hello World!");
         EntityManager em = emf.createEntityManager();
         Scanner scanner = new Scanner(System.in);
-        /*System.out.println("Inseriamo il mezzo di trasporto!");
-        System.out.println("Scrivi 'autobus' se il mezzo è un autobus, altrimenti 'tram' se è un tram");
-        String mezzo = scanner.nextLine();
-        qualeTrasporto(mezzo);
-        System.out.println("Ora dimmi se il mezzo è in servizio (s) oppure in manutenzione (m)");
-        String servizioOManutenzione = scanner.nextLine();*/
-        long date = new Date().getYear()+ 1900;
-        System.out.println(date);
+        System.out.println("Inseriamo il mezzo di trasporto!");
+        nuovoMezzo(scanner);
 
-
-        MezzoDiTrasporto autobus1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 34, StatoDelMezzo.IN_SERVIZIO);
-
-        System.out.println(autobus1);
 
 
 
     }
 
-    public static void qualeTrasporto(String mezzo) {
-        if (!mezzo.equals("autobus") && !mezzo.equals("tram")) {
-            System.err.println("mezzo non valido, riprova");
-            qualeTrasporto(mezzo);
-        } else {
-            System.out.println("mezzo inserito : " + mezzo);
+    public static void nuovoMezzo(Scanner scanner) {
+        TipoMezzo tipoMezzo = null;
+        int capienza = 0;
+        StatoDelMezzo statoDelMezzo = null;
+        System.out.println("Scrivi 'autobus' se il mezzo è un autobus, altrimenti 'tram' se è un tram");
+        String mezzo = scanner.nextLine();
+
+        switch (mezzo) {
+            case "autobus" : {
+                tipoMezzo = TipoMezzo.AUTOBUS;
+                break;
+            }
+            case "tram" : {
+                tipoMezzo = TipoMezzo.TRAM;
+                break;
+            }
+            default: {
+                System.err.println("Errore, mezzo non valido");
+                nuovoMezzo(scanner);
+            }
         }
+        System.out.println("ora inseriamo la sua capienza");
+        try {
+            capienza = Integer.parseInt(scanner.nextLine());
+            System.out.println("capienza mezzo : " + capienza);
+        } catch (NumberFormatException exception) {
+            System.err.println(exception + "Errore, non hai inserito un numero");
+            nuovoMezzo(scanner);
+        }
+        System.out.println("Ora dimmi se il mezzo è in servizio (s) oppure in manutenzione (m)");
+        String servizioOManutenzione = scanner.nextLine();
+        switch (servizioOManutenzione) {
+            case "s" : {
+                System.out.println("mezzo in servizio");
+                statoDelMezzo = StatoDelMezzo.IN_SERVIZIO;
+                break;
+            }
+            case "m" : {
+                statoDelMezzo = StatoDelMezzo.IN_MANUTENZIONE;
+                break;
+            }
+            default: {
+                System.err.println("il carattere inserito non corrisponde a 's' o 'm' riprova");
+                nuovoMezzo(scanner);
+            }
+        }
+
+        MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(tipoMezzo, capienza, statoDelMezzo);
+        System.out.println(mezzo1);
     }
 
 }

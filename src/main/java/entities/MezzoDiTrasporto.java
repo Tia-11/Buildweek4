@@ -82,8 +82,6 @@ public class MezzoDiTrasporto {
                 ", tipoMezzo=" + tipoMezzo +
                 ", capienza=" + capienza +
                 ", statoDelMezzo=" + statoDelMezzo +
-                ", periodoInizio=" + periodoInizio +
-                ", periodoFine=" + periodoFine +
                 '}';
     }
 }
