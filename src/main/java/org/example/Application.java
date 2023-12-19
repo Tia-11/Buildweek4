@@ -1,5 +1,6 @@
 package org.example;
 
+import DAO.MezziDiTrasportoDAO;
 import entities.MezzoDiTrasporto;
 import entities.StatoDelMezzo;
 import entities.TipoMezzo;
@@ -18,6 +19,10 @@ public class Application {
 
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
+        MezziDiTrasportoDAO mDao = new MezziDiTrasportoDAO(em);
+        MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 40, StatoDelMezzo.IN_MANUTENZIONE, LocalDate.parse("2023-06-24"));
+        mDao.Save(mezzo1);
+
 
 
 

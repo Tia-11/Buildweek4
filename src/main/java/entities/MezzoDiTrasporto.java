@@ -31,6 +31,12 @@ public class MezzoDiTrasporto {
         this.capienza = capienza;
         this.statoDelMezzo = statoDelMezzo;
     }
+    public MezzoDiTrasporto(TipoMezzo tipoMezzo, int capienza, StatoDelMezzo statoDelMezzo, LocalDate inizioServizio) {
+        this.tipoMezzo = tipoMezzo;
+        this.capienza = capienza;
+        this.statoDelMezzo = statoDelMezzo;
+        this.inizioServizio = inizioServizio;
+    }
     public MezzoDiTrasporto(TipoMezzo tipoMezzo, int capienza) {
         this.tipoMezzo = tipoMezzo;
         this.capienza = capienza;
