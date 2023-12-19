@@ -1,8 +1,8 @@
 package org.example;
 
-import entities.MezzoDiTrasporto;
-import entities.StatoDelMezzo;
-import entities.TipoMezzo;
+import DAO.TesseraDAO;
+import DAO.UtenteDAO;
+import entities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,15 +25,26 @@ public class Application {
         System.out.println("Scrivi 'autobus' se il mezzo è un autobus, altrimenti 'tram' se è un tram");
         String mezzo = scanner.nextLine();
         qualeTrasporto(mezzo);
+
         System.out.println("Ora dimmi se il mezzo è in servizio (s) oppure in manutenzione (m)");
-        String servizioOManutenzione = scanner.nextLine();*/
+        String servizioOManutenzione = scanner.nextLine();
+
         long date = new Date().getYear()+ 1900;
         System.out.println(date);
 
 
         MezzoDiTrasporto autobus1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 34, StatoDelMezzo.IN_SERVIZIO);
 
-        System.out.println(autobus1);
+        System.out.println(autobus1);*/
+        UtenteDAO us = new UtenteDAO(em);
+        TesseraDAO ts = new TesseraDAO(em);
+        Utente utente = new Utente("Maurizio","Crispino");
+        System.out.println(utente);
+
+        us.save(utente);
+        Tessera tessera = new Tessera(LocalDate.parse("2012-6-22"), LocalDate.parse("2025-6-22"));
+
+        ts.save(tessera);
 
 
 
