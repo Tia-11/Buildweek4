@@ -7,10 +7,7 @@ import entities.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.awt.desktop.SystemEventListener;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Application {
@@ -32,6 +29,7 @@ public class Application {
         UtenteDAO us = new UtenteDAO(em);
         TesseraDAO ts = new TesseraDAO(em);
 
+
         System.out.println("Inizia la tua registrazione");
         System.out.println(" ");
 
@@ -40,19 +38,15 @@ public class Application {
 
         System.out.println("Inserisci il tuo cognome");
         cognome=scanner.nextLine();
+        Tessera tessera = Tessera.nuovaTessera();
 
-        System.out.println("Inserisci la data di emissione della tua tessera secondo il formato (YYYY-MM-DD)");
-        dataEmissione = LocalDate.parse(scanner.nextLine());
-
-        System.out.println("Inserisci la data di scadenza della tua tessera secondo il formato (YYYY-MM-DD)");
-        dataScadenza = LocalDate.parse(scanner.nextLine());
+        System.out.println("Ecco la tua tessera: " + tessera);
 
         Utente utente = new Utente(nome,cognome);
-        Tessera tessera = new Tessera(dataEmissione, dataScadenza);
         utente.setTessera(tessera);
 
-        ts.save(tessera);
-        us.save(utente);
+        //ts.save(tessera);
+        //us.save(utente);
 
         System.out.println(utente);
         System.out.println(utente.getTessera());
