@@ -2,14 +2,13 @@ package entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.UUID;
 
+@Entity
 public class Tessera {
 
         @Id
         @GeneratedValue
-        private UUID id;
+        private long id;
         private LocalDate dataEmissione;
         private LocalDate dataScadenza;
 
@@ -17,9 +16,7 @@ public class Tessera {
         private Utente utente;
 
 
-        public void setId() {
-            this.id = UUID.randomUUID();
-        }
+
         public Tessera (){
 
         }
@@ -45,7 +42,7 @@ public class Tessera {
                 this.dataScadenza = dataScadenza;
         }
 
-        public UUID getId() {
+        public long getId() {
                 return id;
         }
 
@@ -63,7 +60,6 @@ public class Tessera {
                         "id=" + id +
                         ", dataEmissione=" + dataEmissione +
                         ", dataScadenza=" + dataScadenza +
-                        ", utente=" + utente +
                         '}';
         }
 }

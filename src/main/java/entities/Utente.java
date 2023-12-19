@@ -6,20 +6,19 @@ import java.util.UUID;
 
 
 @Entity
+@Table(name = "utente")
 public class Utente {
     @Id
     @GeneratedValue
-    private UUID id;
+    private long id;
     private String nome;
     private String cognome;
 
     @OneToOne
-    @JoinColumn (nullable = false, unique = true)
+    @JoinColumn(name = "tessera_id", unique = true)
     private Tessera tessera;
 
-    public void setId() {
-        this.id = UUID.randomUUID();
-    }
+
     public Utente(){
 
     }
@@ -46,7 +45,7 @@ public class Utente {
         this.cognome = cognome;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
@@ -65,6 +64,6 @@ public class Utente {
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", tessera=" + tessera +
-                '}'+ "tessera"+ getTessera();
+                '}';
     }
 }

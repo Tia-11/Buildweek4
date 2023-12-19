@@ -39,13 +39,15 @@ public class Application {
         UtenteDAO us = new UtenteDAO(em);
         TesseraDAO ts = new TesseraDAO(em);
         Utente utente = new Utente("Maurizio","Crispino");
+
+
+        //us.save(utente);
+        Tessera tessera = new Tessera(LocalDate.parse("2012-06-22"), LocalDate.parse("2025-06-22"));
+
+        utente.setTessera(tessera);
+        //ts.save(tessera);
         System.out.println(utente);
-
-        us.save(utente);
-        Tessera tessera = new Tessera(LocalDate.parse("2012-6-22"), LocalDate.parse("2025-6-22"));
-
-        ts.save(tessera);
-
+        System.out.println(utente.getTessera());
 
 
     }
