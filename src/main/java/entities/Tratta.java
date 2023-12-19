@@ -15,20 +15,26 @@ public class Tratta {
     @JoinTable(name = "mezzoDiTrasporto_tratta",
                joinColumns = @JoinColumn(name = "tratta_id"),
                inverseJoinColumns = @JoinColumn(name = "mezzoDiTrasporto_id"))
-    private List<MezzoDiTrasporto> mezzoDiTrasporto;
+    private List<MezzoDiTrasporto> mezziDiTrasporto;
 
 
 // COSTRUTTORI
 
     public Tratta() {
     }
-
     public Tratta(String zonaPartenza, String capolinea, double tempoMedioPercorrenza) {
         this.zonaPartenza = zonaPartenza;
         this.capolinea = capolinea;
         this.tempoMedioPercorrenza = tempoMedioPercorrenza;
     }
+    public Tratta(String zonaPartenza, String capolinea, double tempoMedioPercorrenza, List<MezzoDiTrasporto> mezziDiTrasporto) {
+        this.zonaPartenza = zonaPartenza;
+        this.capolinea = capolinea;
+        this.tempoMedioPercorrenza = tempoMedioPercorrenza;
+        this.mezziDiTrasporto = mezziDiTrasporto;
+    }
 
+    // GETTER E SETTER
     public long getId() {
         return id;
     }
@@ -57,12 +63,12 @@ public class Tratta {
         this.tempoMedioPercorrenza = tempoMedioPercorrenza;
     }
 
-    /*public MezzoDiTrasporto getMezzoDiTrasporto() {
-        return mezzoDiTrasporto;
+    public List<MezzoDiTrasporto> getMezziDiTrasporto() {
+        return mezziDiTrasporto;
     }
 
-    public void setMezzoDiTrasporto(MezzoDiTrasporto mezzoDiTrasporto) {  // ha senso avere la possibilità di settare il mezzo collegato?
-        this.mezzoDiTrasporto = mezzoDiTrasporto;
+    public void setMezziDiTrasporto(List<MezzoDiTrasporto> mezziDiTrasporto) {
+        this.mezziDiTrasporto = mezziDiTrasporto;
     }
 
     @Override
@@ -72,7 +78,7 @@ public class Tratta {
                 ", zonaPartenza='" + zonaPartenza + '\'' +
                 ", capolinea='" + capolinea + '\'' +
                 ", tempoMedioPercorrenza=" + tempoMedioPercorrenza +
-                ", mezzoDiTrasporto=" + mezzoDiTrasporto +
+                ", mezzoDiTrasporto=" + mezziDiTrasporto +
                 '}';
-    }*/
+    }
 }

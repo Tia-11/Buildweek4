@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,12 +18,12 @@ public class MezzoDiTrasporto {
     private StatoDelMezzo statoDelMezzo;
     private LocalDate inizioServizio;
     @OneToMany(mappedBy = "mezzoDiTrasporto")
-    private List<InManutenzione> inManutenzione;
+    private List<InManutenzione> inManutenzione = new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "mezzoDiTrasporto_tratta",
               joinColumns = @JoinColumn(name = "mezzoDiTrasporto_id"),
               inverseJoinColumns = @JoinColumn(name = "tratta_id"))
-    private List<Tratta> tratta;
+    private List<Tratta> tratta = new ArrayList<>();
 
     //COSTRUTTORI
     public MezzoDiTrasporto() {}
@@ -70,6 +71,30 @@ public class MezzoDiTrasporto {
 
     public void setStatoDelMezzo(StatoDelMezzo statoDelMezzo) {
         this.statoDelMezzo = statoDelMezzo;
+    }
+
+    public LocalDate getInizioServizio() {
+        return inizioServizio;
+    }
+
+    public void setInizioServizio(LocalDate inizioServizio) {
+        this.inizioServizio = inizioServizio;
+    }
+
+    public List<InManutenzione> getInManutenzione() {
+        return inManutenzione;
+    }
+
+    public void setInManutenzione(List<InManutenzione> inManutenzione) {
+        this.inManutenzione = inManutenzione;
+    }
+
+    public List<Tratta> getTratta() {
+        return tratta;
+    }
+
+    public void setTratta(List<Tratta> tratta) {
+        this.tratta = tratta;
     }
 
     @Override

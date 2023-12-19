@@ -1,15 +1,18 @@
 package org.example;
 
 import DAO.MezziDiTrasportoDAO;
+import DAO.TratteDAO;
 import entities.MezzoDiTrasporto;
 import entities.StatoDelMezzo;
 import entities.TipoMezzo;
+import entities.Tratta;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.awt.desktop.SystemEventListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -18,15 +21,24 @@ public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("Buildweek-4");
 
     public static void main(String[] args) {
+
         EntityManager em = emf.createEntityManager();
+
         MezziDiTrasportoDAO mDao = new MezziDiTrasportoDAO(em);
+        TratteDAO tDao = new TratteDAO(em);
+
         MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 40, StatoDelMezzo.IN_MANUTENZIONE, LocalDate.parse("2023-06-24"));
-        mDao.Save(mezzo1);
+        //mDao.Save(mezzo1);
+
+        Tratta tratta1 = new Tratta("Portogruaro", "Bibione", 25.5);
+        //tDao.Save(tratta1);
+        //tratta1.setMezziDiTrasporto();
 
 
 
-
-
+        System.out.println(tDao.findById(4));
+        Tratta trattaProva = tDao.findById(4);
+        //mDao.findById(2).setTratta(List<Tratta> trattaProva);
 
 
 

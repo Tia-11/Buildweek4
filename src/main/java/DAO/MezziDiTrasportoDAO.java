@@ -8,11 +8,11 @@ public class MezziDiTrasportoDAO {
     private EntityManager em;
 
     // COSTRUTTORI
-
     public MezziDiTrasportoDAO(EntityManager em) {
         this.em = em;
     }
 
+    // METODI
     public void Save(MezzoDiTrasporto mezzoDiTrasporto) {
         em.getTransaction().begin();
         em.persist(mezzoDiTrasporto);
