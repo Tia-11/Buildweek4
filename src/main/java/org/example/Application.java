@@ -34,10 +34,10 @@ public class Application {
         //Tratta tratta1 = new Tratta("Galzignano Terme", "Este", 10.8);
         //tDao.Save(tratta1);
         //tratta1.setMezziDiTrasporto();
-        //InManutenzione manutenzione1 = new InManutenzione(LocalDate.parse("2023-04-09"), LocalDate.parse("2023-04-13"), mDao.FindById(6));
+        //InManutenzione manutenzione1 = new InManutenzione(LocalDate.parse("2022-08-30"), LocalDate.parse("2022-09-03"), mDao.FindById(6));
         //System.out.println(manutenzione1);
         //iDao.Save(manutenzione1);
-        System.out.println(mDao.FindById(10));
+        System.out.println(mDao.FindById(6));
 
 
         Tratta trattaProva = tDao.FindById(4);
