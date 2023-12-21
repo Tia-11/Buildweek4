@@ -17,14 +17,6 @@ public class Application {
         EntityManager em = emf.createEntityManager();
 
 
-        Rivenditore nuovoRivenditore = new Rivenditore (UUID.randomUUID(),"tabacchidapaola",new ArrayList<>());
-
-        RivenditoreDAO rivenditoreDAO = new RivenditoreDAO(em);
-
-        rivenditoreDAO.save(nuovoRivenditore);
-
-        em.close();
-        emf.close();
     }
 }
 
