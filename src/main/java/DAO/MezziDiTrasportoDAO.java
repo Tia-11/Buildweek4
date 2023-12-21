@@ -1,8 +1,11 @@
 package DAO;
 
 import entities.MezzoDiTrasporto;
+import entities.TipoMezzo;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class MezziDiTrasportoDAO {
     private final EntityManager em;
@@ -32,5 +35,12 @@ public class MezziDiTrasportoDAO {
         } else {
             System.err.println("l'id fornito " + "(" + id + ")" + " non corrisponde a nessun mezzo");
         }
+    }
+
+    // QUERY
+    public List<MezzoDiTrasporto> findByType(TipoMezzo tipoMezzo) {
+        TypedQuery<MezzoDiTrasporto> getMezzoByTipe = em.createNamedQuery("findByType", MezzoDiTrasporto.class);
+        getMezzoByTipe.setParameter("tipoMezzo", tipoMezzo);
+        return getMezzoByTipe.getResultList();
     }
 }

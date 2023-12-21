@@ -7,6 +7,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "Mezzi_Di_Trasporto")
+
+@NamedQuery(name = "findByType", query = "SELECT a FROM MezzoDiTrasporto a WHERE a.tipoMezzo = :tipoMezzo")
+
 public class MezzoDiTrasporto {
     @Id
     @GeneratedValue

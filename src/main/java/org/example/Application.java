@@ -37,7 +37,7 @@ public class Application {
         //InManutenzione manutenzione1 = new InManutenzione(LocalDate.parse("2022-08-30"), LocalDate.parse("2022-09-03"), mDao.FindById(6));
         //System.out.println(manutenzione1);
         //iDao.Save(manutenzione1);
-        System.out.println(mDao.FindById(6));
+        //System.out.println(mDao.FindById(6));
 
 
         Tratta trattaProva = tDao.FindById(4);
@@ -49,6 +49,13 @@ public class Application {
         //mezzoProva.setTratta(new ArrayList<>(Arrays.asList(trattaProva3, trattaProva2))); // perchè se aggiungo una sola tratta da errore?
         //mDao.Save(mezzoProva);  // quindi questa operazione è una specie di PUT?
         //System.out.println(trattaProva2);
+
+        //PROVE QUERY
+        System.out.println("ricerca per tipologia TRAM --------------");
+        mDao.findByType(TipoMezzo.TRAM).forEach(mezzo -> System.out.println(mezzo));
+        System.out.println("ricerca per tipologia AUTOBUS --------------");
+        mDao.findByType(TipoMezzo.AUTOBUS).forEach(mezzo -> System.out.println(mezzo));
+
 
 
         // perchè alcune date di inizio servizio si sono corrotte?
