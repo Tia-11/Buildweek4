@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-abstract class Acquisto {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Acquisto {
     @Id
     @GeneratedValue
     private UUID id;
