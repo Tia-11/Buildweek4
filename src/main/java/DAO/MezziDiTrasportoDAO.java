@@ -37,10 +37,15 @@ public class MezziDiTrasportoDAO {
         }
     }
 
-    // QUERY
+    // NAMED QUERY
     public List<MezzoDiTrasporto> findByType(TipoMezzo tipoMezzo) {
-        TypedQuery<MezzoDiTrasporto> getMezzoByTipe = em.createNamedQuery("findByType", MezzoDiTrasporto.class);
-        getMezzoByTipe.setParameter("tipoMezzo", tipoMezzo);
-        return getMezzoByTipe.getResultList();
+        TypedQuery<MezzoDiTrasporto> getMezzoByType = em.createNamedQuery("findByType", MezzoDiTrasporto.class);
+        getMezzoByType.setParameter("tipoMezzo", tipoMezzo);
+        return getMezzoByType.getResultList();
+    }
+    // QUERY
+    public List<MezzoDiTrasporto> findAllVehicles() {
+        TypedQuery<MezzoDiTrasporto> getAllQuery = em.createQuery("SELECT a FROM MezzoDiTrasporto a", MezzoDiTrasporto.class);
+        return getAllQuery.getResultList();
     }
 }

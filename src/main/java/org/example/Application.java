@@ -27,14 +27,14 @@ public class Application {
         TratteDAO tDao = new TratteDAO(em);
         InManutenzioneDAO iDao = new InManutenzioneDAO(em);
 
-        MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 29, StatoDelMezzo.IN_MANUTENZIONE, LocalDate.parse("2020-11-02"));
+        //MezzoDiTrasporto mezzo1 = new MezzoDiTrasporto(TipoMezzo.AUTOBUS, 29, StatoDelMezzo.IN_MANUTENZIONE, LocalDate.parse("2020-11-02"));
         //mDao.Save(mezzo1);
         //mDao.FindByIdAndDelete(7);
 
         //Tratta tratta1 = new Tratta("Galzignano Terme", "Este", 10.8);
         //tDao.Save(tratta1);
         //tratta1.setMezziDiTrasporto();
-        //InManutenzione manutenzione1 = new InManutenzione(LocalDate.parse("2022-08-30"), LocalDate.parse("2022-09-03"), mDao.FindById(6));
+        //InManutenzione manutenzione1 = new InManutenzione(LocalDate.parse("2021-03-28"), LocalDate.parse("2022-04-01"), mDao.FindById(12));
         //System.out.println(manutenzione1);
         //iDao.Save(manutenzione1);
         //System.out.println(mDao.FindById(6));
@@ -50,25 +50,28 @@ public class Application {
         //mDao.Save(mezzoProva);  // quindi questa operazione è una specie di PUT?
         //System.out.println(trattaProva2);
 
-        //PROVE QUERY
+        //PROVE NAMED QUERY
+        System.out.println("NAMED QUERY");
         System.out.println("ricerca per tipologia TRAM --------------");
         mDao.findByType(TipoMezzo.TRAM).forEach(mezzo -> System.out.println(mezzo));
         System.out.println("ricerca per tipologia AUTOBUS --------------");
         mDao.findByType(TipoMezzo.AUTOBUS).forEach(mezzo -> System.out.println(mezzo));
 
+        // PROVE QUERY
+        System.out.println("QUERY ANONIME");
+        System.out.println("TUTTI I VEICOLI");
+        mDao.findAllVehicles().forEach(vehicle -> System.out.println(vehicle));
 
+        System.out.println("TUTTE LE MANUTENZIONI");
+        iDao.findAllMaintenances().forEach(maintenance -> System.out.println(maintenance));
 
-        // perchè alcune date di inizio servizio si sono corrotte?
-
-
+        System.out.println("MANUTENZIONI DI UN PERIODO");
+        iDao.findByDate(LocalDate.parse("2022-08-31"), LocalDate.parse("2024-07-20")).forEach(maintenance -> System.out.println(maintenance));
 
 
         Scanner scanner = new Scanner(System.in);
         //System.out.println("Inseriamo il mezzo di trasporto!");
         //nuovoMezzo(scanner);
-
-
-
 
     }
 
