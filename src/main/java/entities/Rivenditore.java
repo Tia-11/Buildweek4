@@ -14,6 +14,8 @@ public class Rivenditore {
     @GeneratedValue
     private UUID id;
 
+    private String nomeRivenditore;
+
     @OneToMany(mappedBy = "rivenditore")
     private List<Acquisto> acquisti;
 
@@ -33,12 +35,21 @@ public class Rivenditore {
         this.acquisti = acquisti;
     }
 
+    public String getNomeRivenditore() {
+        return nomeRivenditore;
+    }
+
+    public void setNomeRivenditore(String nomeRivenditore) {
+        this.nomeRivenditore = nomeRivenditore;
+    }
+
     public Rivenditore() {
     }
 
-    public Rivenditore(UUID id) {
+    public Rivenditore(UUID id, String nomeRivenditore, List<Acquisto> acquisti) {
         this.id = id;
-        this.acquisti = new ArrayList<>();
+        this.nomeRivenditore = nomeRivenditore;
+        this.acquisti = acquisti;
     }
 
     public void aggiungiAcquisto(Acquisto acquisto) {
