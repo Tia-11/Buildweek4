@@ -1,6 +1,7 @@
 package DAO;
 
 import entities.MezzoDiTrasporto;
+import entities.StatoDelMezzo;
 import entities.TipoMezzo;
 
 import javax.persistence.EntityManager;
@@ -42,6 +43,11 @@ public class MezziDiTrasportoDAO {
         TypedQuery<MezzoDiTrasporto> getMezzoByType = em.createNamedQuery("findByType", MezzoDiTrasporto.class);
         getMezzoByType.setParameter("tipoMezzo", tipoMezzo);
         return getMezzoByType.getResultList();
+    }
+    public List<MezzoDiTrasporto> findByStatoDelMezzo(StatoDelMezzo statoDelMezzo) {
+        TypedQuery<MezzoDiTrasporto> getMezzoByStato = em.createNamedQuery("findByStatoDelMezzo", MezzoDiTrasporto.class);
+        getMezzoByStato.setParameter("statoDelMezzo", statoDelMezzo);
+        return getMezzoByStato.getResultList();
     }
     // QUERY
     public List<MezzoDiTrasporto> findAllVehicles() {

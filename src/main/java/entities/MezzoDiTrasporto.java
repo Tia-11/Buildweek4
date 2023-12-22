@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name = "Mezzi_Di_Trasporto")
 
 @NamedQuery(name = "findByType", query = "SELECT a FROM MezzoDiTrasporto a WHERE a.tipoMezzo = :tipoMezzo")
+@NamedQuery(name = "findByStatoDelMezzo", query = "SELECT a FROM MezzoDiTrasporto a WHERE a.statoDelMezzo = :statoDelMezzo")
 
 public class MezzoDiTrasporto {
     @Id

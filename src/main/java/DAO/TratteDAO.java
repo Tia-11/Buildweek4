@@ -3,6 +3,8 @@ package DAO;
 import entities.Tratta;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class TratteDAO {
     private final EntityManager em;
@@ -28,5 +30,12 @@ public class TratteDAO {
         em.remove(tratta);
         em.getTransaction().commit();
         System.out.println("tratta " + tratta.getZonaPartenza() + "-" + tratta.getCapolinea() + " eliminata dal database!");
+    }
+
+    // QUERY
+
+    public List<Tratta> findAllTratte() {
+        TypedQuery<Tratta> query = em.createQuery("SELECT a FROM Tratta a", Tratta.class);
+        return query.getResultList();
     }
 }

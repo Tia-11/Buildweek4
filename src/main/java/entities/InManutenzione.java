@@ -3,7 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
-@NamedQuery(name = "findByDate", query = "SELECT a FROM InManutenzione a WHERE a.inizioManutenzione >= :startDate AND a.fineManutenzione <= :endDate")
+@NamedQuery(name = "findByDate", query = "SELECT a FROM InManutenzione a WHERE a.inizioManutenzione <= :endDate AND a.fineManutenzione >= :startDate")
 public class InManutenzione {
     @Id
     @GeneratedValue
@@ -61,7 +61,6 @@ public class InManutenzione {
                 "id=" + id +
                 ", inizioManutenzione=" + inizioManutenzione +
                 ", fineManutenzione=" + fineManutenzione +
-                "} Mezzo: { " +  "id= " + mezzoDiTrasporto.getId() +
-                ", tipoMezzo=" + mezzoDiTrasporto.getTipoMezzo() + " }";
+                 "}";
     }
 }

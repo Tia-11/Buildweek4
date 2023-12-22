@@ -43,21 +43,29 @@ public class Application {
         Tratta trattaProva = tDao.FindById(4);
         Tratta trattaProva2 = tDao.FindById(3);
         Tratta trattaProva3 = tDao.FindById(5);
-        MezzoDiTrasporto mezzoProva = mDao.FindById(1);
+        MezzoDiTrasporto mezzoProva = mDao.FindById(12);
+        //System.out.println(trattaProva3.getMezziDiTrasporto());
         //mezzoProva.setInizioServizio(LocalDate.parse("2016-02-14"));
         //mDao.Save(mezzoProva);
-        //mezzoProva.setTratta(new ArrayList<>(Arrays.asList(trattaProva3, trattaProva2))); // perchè se aggiungo una sola tratta da errore?
+        //mezzoProva.setTratta(new ArrayList<>(Arrays.asList(trattaProva3))); // perché se aggiungo una sola tratta da errore?
         //mDao.Save(mezzoProva);  // quindi questa operazione è una specie di PUT?
         //System.out.println(trattaProva2);
 
-        //PROVE NAMED QUERY
+        //PROVE NAMED QUERY ----------------
         System.out.println("NAMED QUERY");
+        System.out.println("RICERCA PER TIPOLOGIA MEZZO");
         System.out.println("ricerca per tipologia TRAM --------------");
         mDao.findByType(TipoMezzo.TRAM).forEach(mezzo -> System.out.println(mezzo));
         System.out.println("ricerca per tipologia AUTOBUS --------------");
         mDao.findByType(TipoMezzo.AUTOBUS).forEach(mezzo -> System.out.println(mezzo));
 
-        // PROVE QUERY
+        System.out.println("RICERCA PER STATO DEL MEZZO");
+        System.out.println("ricerca per stato IN SERVIZIO");
+        mDao.findByStatoDelMezzo(StatoDelMezzo.IN_SERVIZIO).forEach(mezzo -> System.out.println(mezzo));
+        System.out.println("ricerca per stato IN MANUTENZIONE");
+        mDao.findByStatoDelMezzo(StatoDelMezzo.IN_MANUTENZIONE).forEach(mezzo -> System.out.println(mezzo));
+
+        // PROVE QUERY --------------------
         System.out.println("QUERY ANONIME");
         System.out.println("TUTTI I VEICOLI");
         mDao.findAllVehicles().forEach(vehicle -> System.out.println(vehicle));
@@ -65,14 +73,18 @@ public class Application {
         System.out.println("TUTTE LE MANUTENZIONI");
         iDao.findAllMaintenances().forEach(maintenance -> System.out.println(maintenance));
 
-        System.out.println("MANUTENZIONI DI UN PERIODO");
-        iDao.findByDate(LocalDate.parse("2022-08-31"), LocalDate.parse("2024-07-20")).forEach(maintenance -> System.out.println(maintenance));
+        System.out.println("MANUTENZIONI DATO UN PERIODO");
+        iDao.findByDate(LocalDate.parse("2022-09-01"), LocalDate.parse("2023-12-31")).forEach(maintenance -> System.out.println(maintenance));
+
+        System.out.println("TUTTE LE TRATTE");
+        tDao.findAllTratte().forEach(tratta -> System.out.println(tratta));
+
+
 
 
         Scanner scanner = new Scanner(System.in);
         //System.out.println("Inseriamo il mezzo di trasporto!");
         //nuovoMezzo(scanner);
-
     }
 
     public static void nuovoMezzo(Scanner scanner) {
