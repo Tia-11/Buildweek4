@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "findByNameZonaPartenza", query = "SELECT a FROM Tratta a WHERE LOWER(a.zonaPartenza) LIKE LOWER(:searchString)")
 public class Tratta {
     @Id
     @GeneratedValue

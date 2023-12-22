@@ -43,7 +43,8 @@ public class Application {
         Tratta trattaProva = tDao.FindById(4);
         Tratta trattaProva2 = tDao.FindById(3);
         Tratta trattaProva3 = tDao.FindById(5);
-        MezzoDiTrasporto mezzoProva = mDao.FindById(12);
+        MezzoDiTrasporto mezzoProva = mDao.FindById(10);
+        //mezzoProva.setCapienza(40);
         //System.out.println(trattaProva3.getMezziDiTrasporto());
         //mezzoProva.setInizioServizio(LocalDate.parse("2016-02-14"));
         //mDao.Save(mezzoProva);
@@ -76,8 +77,20 @@ public class Application {
         System.out.println("MANUTENZIONI DATO UN PERIODO");
         iDao.findByDate(LocalDate.parse("2022-09-01"), LocalDate.parse("2023-12-31")).forEach(maintenance -> System.out.println(maintenance));
 
+        System.out.println("TUTTI I MEZZI DATA UNA CAPIENZA");
+        mDao.findByCapienza(40).forEach(mezzo -> System.out.println(mezzo));
+
         System.out.println("TUTTE LE TRATTE");
         tDao.findAllTratte().forEach(tratta -> System.out.println(tratta));
+
+        System.out.println("TUTTE LE ZONE DI PARTENZA DELLE TRATTE");
+        tDao.findAllZonePartenze().forEach(zona -> System.out.println(zona));
+
+        System.out.println("CERCA TRATTA DATA UNA ZONA DI PARTENZA E MODIFICALA");
+        tDao.findByZonaPartenzaAndDelete("Badia", "San Pio x");
+
+        System.out.println("CERCA TRATTE DATA UNA ZONA DI PARTENZA -ANCHE PARZIALE-");
+        tDao.findByNameZonaPartenza("o").forEach(tratta -> System.out.println(tratta));
 
 
 

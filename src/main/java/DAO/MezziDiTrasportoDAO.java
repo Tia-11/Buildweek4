@@ -49,6 +49,11 @@ public class MezziDiTrasportoDAO {
         getMezzoByStato.setParameter("statoDelMezzo", statoDelMezzo);
         return getMezzoByStato.getResultList();
     }
+    public List<MezzoDiTrasporto> findByCapienza(int capienza) {
+        TypedQuery<MezzoDiTrasporto> getMezzoByCapienza = em.createNamedQuery("findByCapienza", MezzoDiTrasporto.class);
+        getMezzoByCapienza.setParameter("capienza", capienza);
+        return getMezzoByCapienza.getResultList();
+    }
     // QUERY
     public List<MezzoDiTrasporto> findAllVehicles() {
         TypedQuery<MezzoDiTrasporto> getAllQuery = em.createQuery("SELECT a FROM MezzoDiTrasporto a", MezzoDiTrasporto.class);
