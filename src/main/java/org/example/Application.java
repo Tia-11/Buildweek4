@@ -75,7 +75,7 @@ public class Application {
         iDao.findAllMaintenances().forEach(maintenance -> System.out.println(maintenance));
 
         System.out.println("MANUTENZIONI DATO UN PERIODO");
-        iDao.findByDate(LocalDate.parse("2022-09-01"), LocalDate.parse("2023-12-31")).forEach(maintenance -> System.out.println(maintenance));
+        iDao.findByDate(LocalDate.parse("2022-09-04"), LocalDate.parse("2023-12-31")).forEach(maintenance -> System.out.println(maintenance));
 
         System.out.println("TUTTI I MEZZI DATA UNA CAPIENZA");
         mDao.findByCapienza(40).forEach(mezzo -> System.out.println(mezzo));
@@ -87,10 +87,10 @@ public class Application {
         tDao.findAllZonePartenze().forEach(zona -> System.out.println(zona));
 
         System.out.println("CERCA TRATTA DATA UNA ZONA DI PARTENZA E MODIFICALA");
-        tDao.findByZonaPartenzaAndDelete("Badia", "San Pio x");
+        tDao.findByZonaPartenzaAndDelete("San Pio x", "Roma");
 
         System.out.println("CERCA TRATTE DATA UNA ZONA DI PARTENZA -ANCHE PARZIALE-");
-        tDao.findByNameZonaPartenza("o").forEach(tratta -> System.out.println(tratta));
+        tDao.findByNameZonaPartenza("mil").forEach(tratta -> System.out.println(tratta));
 
 
 
