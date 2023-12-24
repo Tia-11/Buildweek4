@@ -1,8 +1,12 @@
 package DAO;
 
 import entities.MezzoDiTrasporto;
+import entities.StatoDelMezzo;
+import entities.TipoMezzo;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class MezziDiTrasportoDAO {
     private final EntityManager em;
@@ -32,5 +36,27 @@ public class MezziDiTrasportoDAO {
         } else {
             System.err.println("l'id fornito " + "(" + id + ")" + " non corrisponde a nessun mezzo");
         }
+    }
+
+    // NAMED QUERY
+    public List<MezzoDiTrasporto> findByType(TipoMezzo tipoMezzo) {
+        TypedQuery<MezzoDiTrasporto> getMezzoByType = em.createNamedQuery("findByType", MezzoDiTrasporto.class);
+        getMezzoByType.setParameter("tipoMezzo", tipoMezzo);
+        return getMezzoByType.getResultList();
+    }
+    public List<MezzoDiTrasporto> findByStatoDelMezzo(StatoDelMezzo statoDelMezzo) {
+        TypedQuery<MezzoDiTrasporto> getMezzoByStato = em.createNamedQuery("findByStatoDelMezzo", MezzoDiTrasporto.class);
+        getMezzoByStato.setParameter("statoDelMezzo", statoDelMezzo);
+        return getMezzoByStato.getResultList();
+    }
+    public List<MezzoDiTrasporto> findByCapienza(int capienza) {
+        TypedQuery<MezzoDiTrasporto> getMezzoByCapienza = em.createNamedQuery("findByCapienza", MezzoDiTrasporto.class);
+        getMezzoByCapienza.setParameter("capienza", capienza);
+        return getMezzoByCapienza.getResultList();
+    }
+    // QUERY
+    public List<MezzoDiTrasporto> findAllVehicles() {
+        TypedQuery<MezzoDiTrasporto> getAllQuery = em.createQuery("SELECT a FROM MezzoDiTrasporto a", MezzoDiTrasporto.class);
+        return getAllQuery.getResultList();
     }
 }

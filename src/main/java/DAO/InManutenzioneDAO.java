@@ -3,6 +3,9 @@ package DAO;
 import entities.InManutenzione;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.time.LocalDate;
+import java.util.List;
 
 public class InManutenzioneDAO {
     private final EntityManager em;
@@ -31,6 +34,16 @@ public class InManutenzioneDAO {
         } else {
             System.err.println("id di manutenzione " + id + " non presente nel database");
         }
-
+    }
+    // QUERY
+    public List<InManutenzione> findAllMaintenances() {
+        TypedQuery<InManutenzione> getAllQuery = em.createQuery("SELECT a FROM InManutenzione a", InManutenzione.class);
+        return getAllQuery.getResultList();
+    }
+    public List<InManutenzione> findByDate(LocalDate startDate, LocalDate endDate) {
+        TypedQuery<InManutenzione> query = em.createNamedQuery("findByDate", InManutenzione.class);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        return query.getResultList();
     }
 }
