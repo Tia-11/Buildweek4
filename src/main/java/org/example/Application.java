@@ -10,10 +10,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.awt.desktop.SystemEventListener;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Supplier;
 
 public class Application {
 
@@ -91,13 +89,64 @@ public class Application {
 
         System.out.println("CERCA TRATTE DATA UNA ZONA DI PARTENZA -ANCHE PARZIALE-");
         tDao.findByNameZonaPartenza("mil").forEach(tratta -> System.out.println(tratta));
+        //--------------------------------------------------------------------------------
 
+        System.out.println(LocalDate.of(2023,7,20).lengthOfMonth());
+
+        //crea3MezziRandom();
 
 
 
         Scanner scanner = new Scanner(System.in);
         //System.out.println("Inseriamo il mezzo di trasporto!");
         //nuovoMezzo(scanner);
+    }
+
+    public static void crea3MezziRandom() {
+        EntityManager em = emf.createEntityManager();
+        MezziDiTrasportoDAO mDao = new MezziDiTrasportoDAO(em);
+        Random rndm = new Random();
+
+        for (int i = 0; i < 3; i++) {
+            int annoCasuale = rndm.nextInt(2013, 2024);
+            int meseCasuale = rndm.nextInt(1, 13);
+            int giornoMeseCasuale = rndm.nextInt(1, LocalDate.of(annoCasuale, meseCasuale, 1).lengthOfMonth() + 1);
+            LocalDate dataCasuale = LocalDate.of(annoCasuale, meseCasuale, giornoMeseCasuale); // generata una data casuale
+
+            // metodo per randomizzare il tipo
+            Supplier<TipoMezzo> tipoMezzoCasuale = () -> {
+                int numCasuale = rndm.nextInt(1, 3); // tra 1 e 2
+                if (numCasuale == 1) {
+                    return TipoMezzo.AUTOBUS;
+                } else {
+                    return TipoMezzo.TRAM;
+                }
+            };
+
+            // metodo per randomizzare la capienza
+            int capienzaCasuale = rndm.nextInt(20, 61);
+
+            // metodo per randomizzare lo stato del mezzo
+            Supplier<StatoDelMezzo> statoMezzoCasuale = () -> {
+                int numCasuale = rndm.nextInt(1, 3); // tra 1 e 2
+                if (numCasuale == 1) {
+                    return StatoDelMezzo.IN_MANUTENZIONE;
+                } else {
+                    return StatoDelMezzo.IN_SERVIZIO;
+                }
+            };
+
+            // metodo per creare un nuovo mezzo utilizzando i dati random generati sopra
+            Supplier<MezzoDiTrasporto> nuovoMezzo = () -> new MezzoDiTrasporto(
+                    tipoMezzoCasuale.get(),
+                    capienzaCasuale,
+                    statoMezzoCasuale.get(),
+                    dataCasuale
+            );
+
+            // salviamo il mezzo nel database dopo aver creato qui sopra il nostro em e aver istanziato il relativo DAO
+            mDao.Save(nuovoMezzo.get());
+        }
     }
 
     public static void nuovoMezzo(Scanner scanner) {
